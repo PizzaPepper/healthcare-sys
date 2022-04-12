@@ -1,0 +1,24 @@
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
+}
+
+#img-nurse > img{
+  height: 300px;
+  width: 300px;
+}
+
+#title {
+  text-align: center;
+  font-family: var(--font-text);
+  color: white;
+  font-size: 4.3rem;
+}
+
+#loading {
+  font-size: 1.5rem;
+  font-weight: 900;
+}

@@ -1,0 +1,46 @@
+input {
+  font-family: var(--font-title);
+}
+
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+#title {
+  text-align: center;
+  font-family: var(--font-text);
+  color: white;
+  font-size: 70px;
+}
+
+#form {
+  display: flex;
+  justify-content: center;
+}
+
+#form-data label {
+  font-size: 2em;
+}
+#form-data input[type="text"],
+#form-data input[type="password"] {
+  height: 4rem;
+  width: 20rem;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 36px;
+}
+
+#form-data input[type="submit"] {
+  color: #414bb2;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 35px;
+  margin-left: 26%;
+  padding: 25px;
+}

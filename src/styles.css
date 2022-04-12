@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+
+:root {
+  --main-bg-color: #2d9bf0;
+  --font-title: "Merriweather", serif;
+  --font-text: "Fredoka One", cursive;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  font-family: var(--font-title);
+}
