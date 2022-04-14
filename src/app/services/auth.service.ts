@@ -4,21 +4,31 @@ import { Observable } from 'rxjs';
 import User from '../models/User';
 import { Global } from './global';
 
-@Injectable()
-export class UserService {
+
+@Injectable({
+  providedIn:'root'
+})
+export class AuthService {
   public url!: string;
 
   constructor(private _http: HttpClient) {
     this.url = Global.url + 'users/';
   }
 
-  login(user: User): Observable<any> {
+  signIn(user: User): Observable<any> {
     const params = JSON.stringify(user);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this._http.post(this.url + 'signin', params, {
       headers: headers,
-      observe: 'response',
     });
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
   }
 }

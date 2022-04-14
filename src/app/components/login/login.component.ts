@@ -3,24 +3,24 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import Person from 'src/app/models/Person';
 import User from 'src/app/models/User';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [UserService]
+  providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
   public user:User;
-  public personLogged?:Person;
+  // public personLogged?:Person;
   public isLogging:boolean;
 
   constructor(
-    private _userService:UserService,
+    private _userService:AuthService,
     private _router:Router
     ) { 
-    this.user = new User('','','');
+    this.user = new User('','');
     this.isLogging=false;
   }
 
@@ -29,20 +29,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form:NgForm){
     //Check data
-    this._userService.login(this.user)
+    this._userService.signIn(this.user)
       .subscribe({
-      next:(res)=>{
-        this.personLogged = new Person(
-          res.body._id,
-          res.body.username,
-          res.body.password,
-          res.body.name,
-          res.body.fsurname,
-          res.body.lsurname,
-          res.body.age,
-          res.body.role
-        );
-          this._router.navigate(['/loading'],{state:{personState:this.personLogged}});
+      next:(token)=>{
+        localStorage.setItem('token',token);
+        this._router.navigate(['/loading']);
       },
       error:(err)=>{
         console.error(err);

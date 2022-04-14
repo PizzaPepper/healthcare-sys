@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +15,6 @@ import { ErrorComponent } from './components/error/error.component';
 import { ListExpComponent } from './components/query-exp/list-exp/list-exp.component';
 import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,15 +24,17 @@ import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp
     ExpedientComponent,
     ErrorComponent,
     ListExpComponent,
-    ResumeExpComponent
+    ResumeExpComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
