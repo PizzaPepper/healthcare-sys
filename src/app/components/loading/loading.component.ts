@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-loading',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router:Router,
+    private _arouter:ActivatedRoute
+    ) { 
+      console.log(this._router.getCurrentNavigation()?.extras.state)
+    }
 
   ngOnInit(): void {
+    console.log(this._router.getCurrentNavigation()?.extras.state)
+    // console.log(history.state.personState);
   }
 
 }
