@@ -9,67 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
-    </tr>
-    <tr>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
-      <td>---</td>
+    <tr *ngFor="let p of this.patients;">
+      <td>{{p.expedient}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.fsurname}}</td>
+      <td>{{p.lsurname}}</td>
       <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
     </tr>
   </tbody>

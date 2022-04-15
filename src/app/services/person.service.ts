@@ -19,4 +19,8 @@ export class PersonService {
     return this._http.get(this.url);
   }
 
+  getPatients(): Observable<any> {
+    return this._http.get(this.url+"allpatients");
+  }
+
 }

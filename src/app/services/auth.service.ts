@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import User from '../models/User';
 import { Global } from './global';
-
 
 @Injectable({
   providedIn:'root'
@@ -11,7 +11,7 @@ import { Global } from './global';
 export class AuthService {
   public url!: string;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient,private _router:Router) {
     this.url = Global.url + 'users/';
   }
 
@@ -26,6 +26,11 @@ export class AuthService {
 
   loggedIn() {
     return !!localStorage.getItem('token');
+  }
+
+  logOut() {
+    localStorage.clear();
+    this._router.navigate(["/login"]);
   }
 
   getToken(){

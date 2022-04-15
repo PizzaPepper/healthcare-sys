@@ -1,21 +1,31 @@
 <div id="user">
-  <img id="img-user"  src="assets/img/nurse.svg" alt="Usuario Trabajador">
-  <h3 id="title">Dr Who</h3>
-  <img id="logout" src="assets/img/logout.svg"/>
+  <img id="img-user" src="assets/img/nurse.svg" alt="Usuario Trabajador" />
+  <h3 id="title">{{ this.name }}</h3>
+  <img id="logout" (click)="this.logOut()" src="assets/img/logout.svg" />
 </div>
 <header>
   <h1>Búsqueda de expedientes</h1>
   <h2>#Expediente / Nombre</h2>
   <span id="input-user">
-    <!-- Improve this later -->
-    <img id="btnSearch" src="assets/img/search.svg" alt="Lupa Busqueda">
-    <input type="text" name="input-Id" id="input-Id">
+    <!-- ! Improve this later -->
+    <img
+      id="btnReload"
+      [@rotatedState]="state"
+      (click)="reload()"
+      src="assets/img/reload.svg"
+      alt="Img reload"
+    />
+    <input
+      type="text"
+      id="input-Id"
+      name="input-Id"
+      (keyup)="setSearch($event)"
+    />
   </span>
 </header>
 
 <main>
   <div id="main-data">
-      <app-list-exp></app-list-exp>
-    </div>
+    <app-list-exp [search]="this.search"></app-list-exp>
+  </div>
 </main>
-

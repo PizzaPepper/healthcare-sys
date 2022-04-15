@@ -1,4 +1,3 @@
-import User from './User';
 
 export default class Person {
   constructor(
@@ -7,7 +6,8 @@ export default class Person {
     public fsurname: string,
     public lsurname: string,
     public age: number,
-    public role: string
+    public expedient:string,
+    public role: string,
   ) {
   }
 }

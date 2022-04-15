@@ -5,6 +5,11 @@ header {
   flex-direction: column;
 }
 
+header > h1, header > h2{
+  color:#331e1e;
+  font-weight: bold;
+}
+
 #title {
   text-align: center;
   color: #1a1a1a;
@@ -22,10 +27,14 @@ header {
 }
 
 #user {
-  padding-left: 20px;
+  margin-left: 20px;
+  padding: 5px;
   position: absolute;
   width: 9rem;
   z-index: 1;
+  background-color: #37b7df;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #1379ee;
 }
 
 #img-user {
@@ -51,14 +60,15 @@ header {
   border: 1px solid black;
 }
 
-#btnSearch {
-  margin-top: 29px;
+#btnReload {
+  margin-top: 35px;
   margin-left: 555px;
   position: absolute;
   max-height: 50px;
   max-width: 50px;
   cursor: pointer;
 }
+
 
 #main-data {
   padding-top: 50px;
