@@ -1,9 +1,11 @@
 import {
   Component,
   Input,
+  Output,
   OnChanges,
   OnInit,
   SimpleChanges,
+  EventEmitter,
 } from '@angular/core';
 import Person from 'src/app/models/Person';
 import { PersonService } from 'src/app/services/person.service';
@@ -17,6 +19,8 @@ import { isPositiveInteger } from 'src/app/utils/utils';
 export class ListExpComponent implements OnInit, OnChanges {
   public patients?: Array<Person>;
   @Input() search: string;
+  @Output() onSelect = new EventEmitter<Person>();
+
 
   constructor(private _personService: PersonService) {
     this.search = '';
@@ -40,5 +44,9 @@ export class ListExpComponent implements OnInit, OnChanges {
       },
       error: () => (this.patients = []),
     });
+  }
+
+  watchPatient(patient: Person): void {
+    this.onSelect.emit(patient);
   }
 }

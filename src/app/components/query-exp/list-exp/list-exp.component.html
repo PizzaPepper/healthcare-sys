@@ -14,7 +14,7 @@
       <td>{{p.name}}</td>
       <td>{{p.fsurname}}</td>
       <td>{{p.lsurname}}</td>
-      <td class="cellWatch"><input class='btnWatch' type='button' value='Ver'/></td>
+      <td class="cellWatch"><input class='btnWatch' (click)="watchPatient(p)" type='button' value='Ver'/></td>
     </tr>
   </tbody>
 </table>

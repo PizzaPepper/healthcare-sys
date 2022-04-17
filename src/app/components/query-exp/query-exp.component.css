@@ -57,7 +57,18 @@ header > h1, header > h2{
   text-align: center;
   font-size: 3rem;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid rgb(25, 140, 206);
+  background-color: #7ad1f3;;
+  transition: 0.2s;
+
+}
+
+#input-Id:focus {
+  transition: 0.2s;
+  outline: none;
+  background-color: white;
+  border: 3px solid #ffffff; 
+
 }
 
 #btnReload {

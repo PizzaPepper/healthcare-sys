@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import Person from 'src/app/models/Person';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,14 +12,16 @@ import { AuthService } from 'src/app/services/auth.service';
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
+  private title:string="Inicio Sesion";
   public user:User;
-  // public personLogged?:Person;
   public isLogging:boolean;
 
   constructor(
     private _userService:AuthService,
-    private _router:Router
+    private _router:Router,
+    private _titleService: Title,
     ) { 
+      this._titleService.setTitle(this.title);
     this.user = new User('','');
     this.isLogging=false;
   }

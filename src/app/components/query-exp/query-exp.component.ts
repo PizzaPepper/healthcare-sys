@@ -8,6 +8,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import Person from 'src/app/models/Person';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-query-exp',
@@ -20,19 +22,25 @@ import {
       state('rotated', style({ transform: 'rotate(360deg)' })),
       transition('rotated => default', animate('400ms ease-out')),
       transition('default => rotated', animate('400ms ease-out')),
-    ])
-    
+    ]),
   ],
 })
 export class QueryExpComponent implements OnInit {
-  public name: string;
-  public search: string;
+  public name: string = 'Dr. Who';
+  public search: string = '';
+  public person!: Person | null;
+  
+  public state: string = 'default';
+  public searchAvailable: boolean = false;
+  
+  private title: string = 'Consulta Expedientes';
 
-  public state: string="default";
-
-  constructor(private _act: ActivatedRoute, private _auth: AuthService) {
-    this.name = 'Dr. Who';
-    this.search = '';
+  constructor(
+    private _act: ActivatedRoute,
+    private _auth: AuthService,
+    private _titleService: Title
+  ) {
+    this._titleService.setTitle(this.title);
     this.InitData();
   }
 
@@ -47,7 +55,7 @@ export class QueryExpComponent implements OnInit {
     });
   }
 
-  setSearch(event: any): void {
+  onKey(event: any): void {
     this.search = event.target.value;
   }
 
@@ -56,7 +64,9 @@ export class QueryExpComponent implements OnInit {
   }
 
   reload(): void {
-    this.search = '';
-    this.state = (this.state === 'default' ? 'rotated' : 'default');
+    if (this.searchAvailable == false) {
+      this.search = '';
+      this.state = this.state === 'default' ? 'rotated' : 'default';
+    }
   }
 }

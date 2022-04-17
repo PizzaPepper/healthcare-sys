@@ -22,6 +22,7 @@ export class QuerySettingService implements Resolve<any> {
     //     return { first, second };
     //   })
     // );
+    
     return this._person.getPerson();
   }
 }

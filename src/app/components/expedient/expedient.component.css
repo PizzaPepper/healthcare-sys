@@ -77,6 +77,10 @@ header {
   cursor: pointer;
 }
 
+input[type="file"] {
+ display: none;
+}
+
 .arrow-up {
   transform: rotate(90deg);
   transition: 0.5s;
@@ -96,6 +100,17 @@ header {
   overflow: hidden; */
 }
 
+#messageFile {
+  width: 100%;
+  text-align: center;
+}
+
+#plus {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+} 
+
 /** Table data  */
 
 #table-data {
@@ -113,7 +128,7 @@ td {
 }
 
 td {
-  font-size: 0.5em;
+  font-size: 1.0em;
 }
 
 table {
@@ -158,7 +173,7 @@ thead {
 
 .row-files{
   display: flex;
-  gap: 30px 30px;
+  gap: 30px 70px;
   color: black;
   flex-wrap: wrap;
   padding: 25px;
@@ -166,12 +181,14 @@ thead {
 
 .file {
   height: 120px;
-  width: 80px;
+  width: 120px;
   cursor: pointer;
+  text-align: center;
+
 }
 
 .file > p {
-  text-align: center;
+  word-wrap: break-word;
 }
 
 .file img {

@@ -9,16 +9,16 @@ import { ErrorComponent } from './components/error/error.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { SiteSettingService } from './resolves/site-setting.resolve';
 import { LoadingSettingResolve } from './resolves/loading-setting.resolve';
 import { QuerySettingService } from './resolves/query-setting.resolve';
+import { ExpSettingResolve } from './resolves/exp-setting.resolve';
 
 const routes: Routes = [
   {path: '', component:LoginComponent, },
   {path: 'login', component:LoginComponent},
   {path: 'loading', component:LoadingComponent,canActivate: [AuthGuard], resolve:{cres:LoadingSettingResolve}},
   {path: 'query', component:QueryExpComponent,canActivate: [AuthGuard], resolve:{cres:QuerySettingService}},
-  {path: 'expedient', component:ExpedientComponent, canActivate: [AuthGuard]},
+  {path: 'expedient/:id', component:ExpedientComponent, canActivate: [AuthGuard],resolve:{cres:ExpSettingResolve}},
   {path: '**', component:ErrorComponent},
 
 ];

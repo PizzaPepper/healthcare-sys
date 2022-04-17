@@ -4,6 +4,7 @@
       id="img-return"
       src="assets/img/arrows.svg"
       alt="Image Arrows pointing to the left"
+      (click)="this.returnPage()"
     />
   </div>
   <div id="info">
@@ -15,25 +16,24 @@
     <div id="info-general">
       <div class="info-text">
         <h2 id="text-name">Nombre</h2>
-        <h4>----</h4>
+        <h4>{{ this.exp.patient.name }}</h4>
       </div>
       <div class="info-text">
         <h2>Apellido M.</h2>
-        <h4 id="text-fs">----</h4>
+        <h4 id="text-fs">{{ this.exp.patient.fsurname }}</h4>
       </div>
       <div class="info-text">
         <h2>Apellido P.</h2>
-        <h4 id="text-ls">----</h4>
+        <h4 id="text-ls">{{ this.exp.patient.lsurname }}</h4>
       </div>
       <div class="info-text">
         <h2>Edad</h2>
-        <h3 id="text-age">----</h3>
+        <h3 id="text-age">{{ this.exp.patient.age }}</h3>
       </div>
     </div>
   </div>
 </header>
 <main>
-
   <!-- * START BAR RECORDS -->
   <div class="bar">
     <div class="bar-content">
@@ -43,16 +43,20 @@
           class="img-option filter-white"
           src="assets/img/plus.svg"
           alt="Img plus"
+          *ngIf="this.currentUser !== 'patient'"
         />
+
         <img
           class="img-option arrow-up filter-white"
           src="assets/img/arrows.svg"
           alt="Img arrow to the up"
+          (click)="this.toggleRecord()"
+          [@rotatedState]="this.stateRecord"
         />
       </div>
     </div>
   </div>
-  <div class="panel">
+  <div class="panel" *ngIf="this.stateRecord === 'default'" [@pop]="">
     <table id="table-data">
       <thead>
         <tr>
@@ -62,65 +66,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
-          <td class="cellWatch">
-            <input class="btnWatch" type="button" value="Ver" />
-          </td>
-        </tr>
-        <tr>
-          <td>---</td>
-          <td>---</td>
+        <tr *ngFor="let record of this.exp.records">
+          <td>{{ record.record }}</td>
+          <td>{{ getNiceTime(record.date) }}</td>
           <td class="cellWatch">
             <input class="btnWatch" type="button" value="Ver" />
           </td>
@@ -135,32 +83,49 @@
     <div class="bar-content">
       <h1>Archivos Adjuntos</h1>
       <div class="options">
-        <img
-          class="img-option filter-white"
-          src="assets/img/plus.svg"
-          alt="Img plus"
-        />
+        <label for="option-file" *ngIf="this.currentUser !== 'patient'">
+          <img
+            class="img-option filter-white"
+            src="assets/img/plus.svg"
+            alt="Img plus"
+          />
+          <input
+            accept="{{ this.filterFile }}"
+            id="option-file"
+            (change)="onFileSelected($event)"
+            type="file"
+          />
+        </label>
+
         <img
           class="img-option arrow-up filter-white"
           src="assets/img/arrows.svg"
           alt="Img arrow to the up"
+          (click)="this.toggleFile()"
+          [@rotatedState]="this.stateFile"
         />
       </div>
     </div>
   </div>
-  <div class="panel">
+  <div class="panel" *ngIf="this.stateFile === 'default'" [@pop]>
+    
     <div class="row-files">
-      <div class="file">
-        <img src="assets/img/extensions/MP3.svg" alt="Img File">
-        <p>Foo PNG</p>
+      <div class="file"  *ngFor="let file of this.exp.files">
+        <img
+          src="assets/img/extensions/{{ file.extension.toUpperCase() }}.svg"
+          alt="Img File"
+          (click)="this.redirectToExternalPage(file.url)"
+        />
+        <p>
+          {{ this.getNiceNameFile(file.name, file.extension) }}
+        </p>
       </div>
-      <div class="file">
-        <img src="assets/img/extensions/PDF.svg" alt="Img File">
-        <p>Foo PDF</p>
-      </div>
-      <div class="file">
-        <img src="assets/img/extensions/ZIP.svg" alt="Img File">
-        <p>Foo ZIP/RAR</p>
+
+      <div *ngIf="this.exp.files.length == 0" id="messageFile">
+        <h1>La lista de Archivos esta vacio</h1>
+        <h2>
+          Agrega un archivo seleccionado el icono <span id="plus">+</span>
+        </h2>
       </div>
     </div>
   </div>

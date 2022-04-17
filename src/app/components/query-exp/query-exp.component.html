@@ -6,6 +6,7 @@
 <header>
   <h1>Búsqueda de expedientes</h1>
   <h2>#Expediente / Nombre</h2>
+
   <span id="input-user">
     <!-- ! Improve this later -->
     <img
@@ -19,13 +20,28 @@
       type="text"
       id="input-Id"
       name="input-Id"
-      (keyup)="setSearch($event)"
+      (keyup)="onKey($event)"
+      [disabled]="this.searchAvailable"
     />
   </span>
 </header>
 
 <main>
   <div id="main-data">
-    <app-list-exp [search]="this.search"></app-list-exp>
+    <div *ngIf="!this.person; then applist; else appresume"></div>
+    
+    <ng-template #applist>
+      <app-list-exp
+        [search]="this.search"
+        (onSelect)="this.person = $event; this.searchAvailable = true"
+      ></app-list-exp>
+    </ng-template>
+    <ng-template #appresume>
+      <app-resume-exp
+        [onSelectPerson]="this.person"
+        (returnList)="this.person = null; this.searchAvailable = false"
+      ></app-resume-exp>
+    </ng-template>
+    
   </div>
 </main>

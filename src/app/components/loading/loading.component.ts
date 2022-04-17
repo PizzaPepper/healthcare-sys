@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,13 +12,17 @@ export class LoadingComponent implements OnInit, OnDestroy {
   public role?: string;
   public load: string = 'Cargando';
   
+  
+  private exp?:string;
   private id: any;
 
   constructor(
     private _router: Router,
     private _act: ActivatedRoute,
+    private _titleService: Title,
   ) {
     this.getPerson();
+    this._titleService.setTitle(this.load);
   }
 
   ngOnInit(): void {
@@ -26,7 +31,11 @@ export class LoadingComponent implements OnInit, OnDestroy {
     }, 500);
 
     setTimeout(() => {
-      this._router.navigate(["/query"]);
+      if(this.role==="doctor"){
+        this._router.navigate(["/query"]);
+      }else if(this.role==="patient"){
+        this._router.navigate(["/expedient/",this.exp]);
+      }
     }, 5000);
   }
 
@@ -42,6 +51,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
         const data = cres['cres'];
         this.name = data.name;
         this.role = data.role;
+        this.exp = data.expedient;
       },
       error: (err) => {
         console.error(err);
@@ -53,7 +63,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
     switch (this.role) {
       case 'doctor':
         return 'nurse-Checked.svg';
-      case 'pacient':
+      case 'patient':
         return 'user-Checked.svg';
       default:
         return '';
