@@ -44,3 +44,7 @@ input {
   margin-left: 26%;
   padding: 25px;
 }
+
+.error {
+  color: red;
+}

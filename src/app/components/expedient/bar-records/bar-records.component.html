@@ -1,0 +1,41 @@
+  <div class="bar">
+    <div class="bar-content">
+      <h1>Registros</h1>
+      <div class="options">
+        <img
+          class="img-option filter-white"
+          src="assets/img/plus.svg"
+          alt="Img plus"
+          *ngIf="this.currentUser !== 'patient'"
+        />
+
+        <img
+          class="img-option arrow-up filter-white"
+          src="assets/img/arrows.svg"
+          alt="Img arrow to the up"
+          (click)="this.toggleRecord()"
+          [@rotatedState]="this.stateRecord"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="panel" *ngIf="this.stateRecord === 'default'" [@pop]="">
+    <table id="table-data">
+      <thead>
+        <tr>
+          <th>#Folio</th>
+          <th>Fecha</th>
+          <th class="cellWatch"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of this.records">
+          <td>{{ record.record }}</td>
+          <td>{{ getNiceTime(record.date) }}</td>
+          <td class="cellWatch">
+            <input class="btnWatch" type="button" value="Ver" (click)="this.onWatchRecord()" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

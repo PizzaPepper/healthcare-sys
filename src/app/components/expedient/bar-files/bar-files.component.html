@@ -1,0 +1,60 @@
+<div class="bar">
+  <div class="bar-content">
+    <h1>Archivos Adjuntos</h1>
+    <div class="options">
+      <div *ngIf="!this.isUploading; then showPlus; else showLoading"></div>
+
+      <ng-template #showPlus>
+        <label for="option-file" *ngIf="this.currentUser !== 'patient'">
+          <div>
+            <img
+              class="img-option filter-white"
+              src="assets/img/plus.svg"
+              alt="Img plus"
+            />
+          </div>
+          <input
+            accept="{{ this.filterFile }}"
+            id="option-file"
+            (change)="onFileSelected($event)"
+            type="file"
+          />
+        </label>
+      </ng-template>
+
+      <ng-template #showLoading>
+        <img
+          class="img-option arrow-up filter-white"
+          src="assets/img/loading.gif"
+          alt="Gif loading"
+        />
+      </ng-template>
+
+      <img
+        class="img-option arrow-up filter-white"
+        src="assets/img/arrows.svg"
+        alt="Img arrow to the up"
+        (click)="this.toggleFile()"
+        [@rotatedState]="this.stateFile"
+      />
+    </div>
+  </div>
+</div>
+<div class="panel" *ngIf="this.stateFile === 'default'" [@pop]>
+  <div class="row-files">
+    <div class="file" *ngFor="let file of this.files">
+      <img
+        src="assets/img/extensions/{{ file.extension.toUpperCase() }}.svg"
+        alt="Img File"
+        (click)="this.redirectToExternalPage(file.url)"
+      />
+      <p>
+        {{ this.getNiceNameFile(file.name, file.extension) }}
+      </p>
+    </div>
+    <div *ngIf="this.files.length == 0" id="messageFile">
+      <h1>La lista de Archivos esta vacio</h1>
+      <h2>Agrega un archivo seleccionado el icono <span id="plus">+</span></h2>
+    </div>
+  </div>
+</div>

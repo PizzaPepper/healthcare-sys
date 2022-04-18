@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+@import '~ngx-toastr/toastr';
 
 :root {
   --main-bg-color: #2d9bf0;

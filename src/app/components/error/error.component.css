@@ -1,0 +1,48 @@
+.container {
+height: 500px;
+width: 750px;
+margin: 100px auto;
+border-radius: 10px;
+
+}
+
+.error {
+  display: inline-block;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  text-align: center;
+  color: white;
+}
+
+.error > h1 {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.error > h3 {
+  font-size: 1.6rem;
+}
+
+.error > button {
+  height: 60px;
+  width: 120px;
+  background-color: rgb(74, 173, 74);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 0px;
+  text-align: center;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.error > button:hover {
+  height: 65px;
+  width: 125px;
+  background-color: rgb(64, 170, 64);
+  transition: 0.2s;
+  cursor: pointer;
+}

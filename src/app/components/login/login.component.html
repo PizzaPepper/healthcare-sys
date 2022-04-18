@@ -17,6 +17,7 @@
         required
       />
       <br />
+      
       <br />
       <label for="pass">Contraseña</label>
       <br />
@@ -29,6 +30,10 @@
         required
       />
       <br />
+        <div *ngIf="this.error"  class="error">
+          <p>Error: El Usuario o Contraseña son incorrectas</p>
+        </div>
+      
       <input type="submit" value="Iniciar Sesion" [disabled]="isLogging" />
     </form>
   </div>

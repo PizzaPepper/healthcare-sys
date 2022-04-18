@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   private title:string="Inicio Sesion";
   public user:User;
+  public error:boolean=false;
   public isLogging:boolean;
 
   constructor(
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form:NgForm){
     //Check data
+    this.isLogging=true;
     this._userService.signIn(this.user)
       .subscribe({
       next:(token)=>{
@@ -38,10 +41,20 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/loading']);
       },
       error:(err)=>{
-        console.error(err);
+        this.isLogging=false;
         form.reset();
+        this.showError(true);
+        setTimeout(()=>{
+        this.showError(false);
+          
+        },5000)
       }
     });
   }
+
+  showError(show:boolean){
+    this.error=show;
+  }
+
 }
 

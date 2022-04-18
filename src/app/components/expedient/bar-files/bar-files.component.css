@@ -1,0 +1,90 @@
+.bar {
+  border-top: 1px solid #6c8ecf;
+  background-color: #6b7ea2;
+  height: 5rem;
+  width: 80%;
+  margin: 0px auto;
+  padding: 10px;
+}
+
+.bar-content {
+  width: 90%;
+  display: flex;
+  margin: 0px auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  width: 110px;
+}
+
+.filter-white {
+  filter: invert(100%) sepia(95%) saturate(0%) hue-rotate(127deg)
+    brightness(109%) contrast(100%);
+}
+
+.img-option {
+  height: 40px;
+  width: 45px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.arrow-up {
+  transform: rotate(90deg);
+  transition: 0.5s;
+}
+
+.arrow-down {
+  transform: rotate(270deg);
+  transition: 0.5s;
+}
+
+.panel {
+  width: 80%;
+  margin: 0px auto;
+  padding: 10px;
+  background-color: #47bce1;
+}
+
+#plus {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+/** Row Files  */
+
+.row-files {
+  display: flex;
+  gap: 30px 70px;
+  color: black;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.file {
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.file > p {
+  word-wrap: break-word;
+}
+
+.file img {
+  height: 5rem;
+}
+
+#messageFile {
+  width: 100%;
+  text-align: center;
+}

@@ -19,4 +19,5 @@ export class ExpedientService {
   uploadFile(id:string,form:FormData){
     return this._http.post(this.url+id+'/upload',form);
   }
+
 }

@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { ExpedientComponent } from './components/expedient/expedient.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ListExpComponent } from './components/query-exp/list-exp/list-exp.component';
 import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp.component';
+import { BarRecordsComponent } from './components/expedient/bar-records/bar-records.component';
+import { BarFilesComponent } from './components/expedient/bar-files/bar-files.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp
     ErrorComponent,
     ListExpComponent,
     ResumeExpComponent,
+    BarRecordsComponent,
+    BarFilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthGuard,
