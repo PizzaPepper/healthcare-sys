@@ -20,4 +20,15 @@ export class ExpedientService {
     return this._http.post(this.url+id+'/upload',form);
   }
 
+  getStatus(id:string){
+    return this._http.get(this.url+id+'/status');
+  }
+
+  putStatus(id:string){
+    return this._http.put(this.url+id+'/status',{});
+  }
+
+  putStatusDefault(id:string){
+    return this._http.put(this.url+id+'/statusDefault',{});
+  }
 }

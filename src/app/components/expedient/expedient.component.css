@@ -1,7 +1,3 @@
-
-
-/** Info. user */
-
 header {
   height: 15rem;
   width: 80%;
@@ -24,6 +20,11 @@ header {
   column-gap: 100px;
 }
 
+#info-access {
+  display: flex;
+  justify-content: end;
+}
+
 .info-text {
   text-align: center;
 }
@@ -41,6 +42,11 @@ header {
 
 #img-user {
   height: 90%;
+}
+
+#img-alert {
+  height: 70px;
+  cursor: pointer;
 }
 
 

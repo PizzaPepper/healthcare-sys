@@ -6,6 +6,7 @@ export default class Expedient {
   constructor(
     public patient: Person,
     public records: Array<Record>,
-    public files: Array<File>
+    public files: Array<File>,
+    public statusAccess: string,
   ) {}
 }

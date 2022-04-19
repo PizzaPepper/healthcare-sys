@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import Expedient from 'src/app/models/Expedient';
 import { AuthService } from 'src/app/services/auth.service';
+import { ExpedientService } from 'src/app/services/expedient.service';
 
 @Component({
   selector: 'app-expedient',
@@ -27,6 +28,7 @@ export class ExpedientComponent implements OnInit {
     private _router: Router,
     private _titleService: Title,
     private _auth: AuthService,
+    private _expedientService: ExpedientService
   ) {
     this._titleService.setTitle(this.title);
   }
@@ -46,7 +48,8 @@ export class ExpedientComponent implements OnInit {
         this.exp = new Expedient(
           data.second.patient,
           data.second.records,
-          data.second.files
+          data.second.files,
+          data.second.requestAccess
         );
       },
     });
@@ -60,6 +63,18 @@ export class ExpedientComponent implements OnInit {
     }
   }
 
+  acceptRequest(): void {
+    const idExp:any = this._act.snapshot.paramMap.get('id');
+
+    this._expedientService.putStatus(idExp).subscribe({
+      next: (res) => {
+        this.exp.statusAccess = 'default';
+      },
+      error: (err) => {
+        this.exp.statusAccess = 'default';
+      }
+    });
+  }
 
   
 

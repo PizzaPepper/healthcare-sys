@@ -43,7 +43,25 @@
         id="btnRequest"
         style="background-color: #0c71bf"
         value="Solicitar Acceso"
+        (click)="waitRequest()"
       />
+    </div>
+
+    <div id="popup" class="overlay">
+      <div id="popupBody">
+        <div id="popupBodyOver">
+          <h2>Esperando en confirmar la solicitud</h2>
+          <img
+            id="img-loading"
+            src="assets/img/loading.gif"
+            alt="Img loading"
+          />
+          <br>
+          <div class="popupContent">
+            <button id="btnCancel" (click)="this.onCloseWait()">Cancelar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

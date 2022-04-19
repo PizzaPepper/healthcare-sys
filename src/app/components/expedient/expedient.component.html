@@ -13,22 +13,30 @@
       src="assets/img/user-placeholder.svg"
       alt="Image about current user"
     />
-    <div id="info-general">
-      <div class="info-text">
-        <h2 id="text-name">Nombre</h2>
-        <h4>{{ this.exp.patient.name }}</h4>
+    <div>
+      <div id="info-general">
+        <div class="info-text">
+          <h2 id="text-name">Nombre</h2>
+          <h4>{{ this.exp.patient.name }}</h4>
+        </div>
+        <div class="info-text">
+          <h2>Apellido M.</h2>
+          <h4 id="text-fs">{{ this.exp.patient.fsurname }}</h4>
+        </div>
+        <div class="info-text">
+          <h2>Apellido P.</h2>
+          <h4 id="text-ls">{{ this.exp.patient.lsurname }}</h4>
+        </div>
+        <div class="info-text">
+          <h2>Edad</h2>
+          <h3 id="text-age">{{ this.exp.patient.age }}</h3>
+        </div>
       </div>
-      <div class="info-text">
-        <h2>Apellido M.</h2>
-        <h4 id="text-fs">{{ this.exp.patient.fsurname }}</h4>
-      </div>
-      <div class="info-text">
-        <h2>Apellido P.</h2>
-        <h4 id="text-ls">{{ this.exp.patient.lsurname }}</h4>
-      </div>
-      <div class="info-text">
-        <h2>Edad</h2>
-        <h3 id="text-age">{{ this.exp.patient.age }}</h3>
+      <div >
+        <br>
+        <span id="info-access" *ngIf="this.currentUser==='patient' && this.exp.statusAccess === 'pending' ">
+          <h4>Alguien solicita acesso a su expediente </h4> <img id="img-alert" src="assets/img/alert.svg" (click)="acceptRequest()" alt="Img alert">
+        </span>
       </div>
     </div>
   </div>
