@@ -8,6 +8,13 @@
     />
     <h1>#Expediente</h1>
     <h1 id="id-exp">#{{ this.onSelectPerson!.expedient || "----" }}</h1>
+    <div [ngSwitch]="this.stateAccess">
+      <img *ngSwitchDefault id="img-stateAccess" src="assets/img/lock.svg" alt="Img of state of access">
+      <img *ngSwitchCase="'default'" id="img-stateAccess" src="assets/img/lock.svg" alt="Img of state of access">
+      <img *ngSwitchCase="'pending'" id="img-stateAccess" src="assets/img/waiting.svg" alt="Img of state of access">
+      <img *ngSwitchCase="'accepted'" id="img-stateAccess" src="assets/img/unlock.svg" alt="Img of state of access">
+      <img *ngSwitchCase="'loading'" id="img-stateAccess" src="assets/img/loading.gif" alt="Img of state of access">
+    </div>
   </span>
   <div id="body-info">
     <div class="data">
@@ -43,7 +50,7 @@
         id="btnRequest"
         style="background-color: #0c71bf"
         value="Solicitar Acceso"
-        (click)="waitRequest()"
+        (click)="requestAccess()"
       />
     </div>
 

@@ -101,6 +101,10 @@
   padding: 10px;
 }
 
+#img-stateAccess{
+  height: 60px;
+}
+
 #popupBodyOver {
   display: flex;
   flex-direction: column;
