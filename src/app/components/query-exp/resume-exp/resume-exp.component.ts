@@ -10,6 +10,8 @@ import Person from 'src/app/models/Person';
 import { Router } from '@angular/router';
 import { ExpedientService } from 'src/app/services/expedient.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-resume-exp',
@@ -26,6 +28,7 @@ export class ResumeExpComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _expedientService: ExpedientService,
+    private _auth: AuthService,
     private toastr: ToastrService
   ) {}
   ngOnDestroy(): void {
@@ -111,12 +114,22 @@ export class ResumeExpComponent implements OnInit, OnDestroy {
       this.toastr.error('Be patient dammit!');
       return;
     }
-    if (this.stateAccess === 'waiting') {
+    if (this.stateAccess === 'waiting' || this.stateAccess === 'pending') {
       this.toastr.info('Is already requested');
+
       return;
     }
     if (this.stateAccess === 'accepted') {
-      this.goToExpedient();
+      this._expedientService
+        .putStatus(this.onSelectPerson!.expedient)
+        .subscribe({
+          next: (res) => {
+            const token: any = res.headers.get('X-Token');
+            this._auth.addTokenExp(token);
+            this.goToExpedient();
+          },
+        });
+
       return;
     }
 
@@ -124,13 +137,13 @@ export class ResumeExpComponent implements OnInit, OnDestroy {
 
     this._expedientService.putStatus(this.onSelectPerson!.expedient).subscribe({
       next: (status: any) => {
-        this.toastr.success(status);
+        this.toastr.success(status.body);
       },
       error: (err: any) => {
         this.toastr.error('Something went wrong');
         this.stateAccess = 'waiting';
         clearInterval(this.waiting);
-      }
-    })
+      },
+    });
   }
 }

@@ -24,6 +24,10 @@ export class AuthService {
     });
   }
 
+  addTokenExp(token:string){
+    localStorage.setItem('authorizationsession',token);
+  }
+
   loggedIn() {
     return !!localStorage.getItem('token');
   }
@@ -35,5 +39,9 @@ export class AuthService {
 
   getToken(){
     return localStorage.getItem('token');
+  }
+
+  getTokenExp(){
+    return localStorage.getItem('authorizationsession');
   }
 }

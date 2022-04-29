@@ -16,7 +16,8 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const tokenizeReq: HttpRequest<any> = req.clone({
       setHeaders: {
-        Authorization: `${this.authService.getToken()}`
+        Authorization: `${this.authService.getToken()}`,
+        authorizationsession:`${this.authService.getTokenExp()}`
       }
     });
     return next.handle(tokenizeReq);
