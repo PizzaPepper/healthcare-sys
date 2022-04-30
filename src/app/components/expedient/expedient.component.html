@@ -42,6 +42,13 @@
   </div>
 </header>
 <main>
-<app-bar-records [records]="this.exp.records" [currentUser]="this.currentUser"></app-bar-records>
+  <div *ngIf="this.record; then barRecord; else barRecords;"></div>
+  <ng-template #barRecords>
+    <app-bar-records (returnRecord)="this.record=!this.record" [records]="this.exp.records" [currentUser]="this.currentUser" ></app-bar-records>
+  </ng-template>
+  <ng-template #barRecord>
+  <app-bar-details-record (returnRecord)="this.record=!this.record" [currentUser]="this.currentUser" ></app-bar-details-record>
+</ng-template>
+
 <app-bar-files [files]="this.exp.files" [currentUser]="this.currentUser"></app-bar-files>
 </main>

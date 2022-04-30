@@ -1,0 +1,96 @@
+<div class="bar">
+  <div class="bar-content">
+    <h1>Registro</h1>
+    <div class="options">
+      <img
+        class="img-option filter-white"
+        src="assets/img/arrows.svg"
+        alt="Img return"
+        (click)="returnRecords()"
+      />
+
+      <img
+        class="img-option arrow-up filter-white"
+        src="assets/img/arrows.svg"
+        alt="Img arrow to the up"
+        (click)="this.toggleRecord()"
+        [@rotatedState]="this.stateRecord"
+      />
+    </div>
+  </div>
+</div>
+<div class="panel" *ngIf="this.stateRecord === 'default'" [@pop]="">
+  <form>
+    <h2>Doctor a cargo: <b>Dr. Pepper</b></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha/Hora</th>
+          <th>Lista inicial de problemas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            2022-02-02 12:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2022-02-03 11:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2022-02-03 11:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2022-02-03 11:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2022-02-03 11:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2022-02-03 11:00
+          </td>
+          <td>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo beatae
+            nobis reiciendis fugiat mollitia ipsam et temporibus commodi
+            dignissimos, maxime.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

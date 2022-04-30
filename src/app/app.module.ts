@@ -18,6 +18,8 @@ import { ListExpComponent } from './components/query-exp/list-exp/list-exp.compo
 import { ResumeExpComponent } from './components/query-exp/resume-exp/resume-exp.component';
 import { BarRecordsComponent } from './components/expedient/bar-records/bar-records.component';
 import { BarFilesComponent } from './components/expedient/bar-files/bar-files.component';
+import { ScanFingerComponent } from './components/query-exp/scan-finger/scan-finger.component';
+import { BarDetailsRecordComponent } from './components/expedient/bar-details-record/bar-details-record.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { BarFilesComponent } from './components/expedient/bar-files/bar-files.co
     ResumeExpComponent,
     BarRecordsComponent,
     BarFilesComponent,
+    ScanFingerComponent,
+    BarDetailsRecordComponent,
   ],
   imports: [
     BrowserModule,

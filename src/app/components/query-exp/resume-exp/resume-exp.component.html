@@ -41,7 +41,7 @@
         id="btnDetails"
         style="background-color: #2d9bf0"
         value="Ver Detalles"
-        (click)="goToExpedient()"
+        (click)="waitRequest()"
       />
     </div>
     <div class="grpBtn">
@@ -54,8 +54,9 @@
       />
     </div>
 
-    <div id="popup" class="overlay">
-      <div id="popupBody">
+    <div id="popup" class="overlay" >
+      
+      <!-- <div id="popupBody">
         <div id="popupBodyOver">
           <h2>Esperando en confirmar la solicitud</h2>
           <img
@@ -69,6 +70,10 @@
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="popupContent">
+      <button  (click)="this.onCloseWait()">&#10006;</button>
     </div>
+    <app-scan-finger [ExpId]="this.onSelectPerson?.expedient"></app-scan-finger>
   </div>
 </div>

@@ -20,6 +20,7 @@ import { ExpedientService } from 'src/app/services/expedient.service';
 export class ExpedientComponent implements OnInit {
   public exp!: Expedient;
 
+  public record: boolean=false;
   public currentUser: string = '';
   private title: string = 'Expediente';
 

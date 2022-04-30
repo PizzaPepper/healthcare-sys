@@ -63,7 +63,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms;
-  z-index: 2;
+  z-index: 1;
   visibility: hidden;
   opacity: 0;
 }

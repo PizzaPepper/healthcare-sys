@@ -1,0 +1,28 @@
+
+#fingerScan {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-bg-color);;
+  width: 350px;
+  height: 500px;
+  box-shadow: 1px 1px 15px black;
+}
+#fingerBody {
+  text-align: center;
+  color: white;
+  font-family: var(--font-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#fingerBody > img {
+  width: 120px;
+}
+
+#img-finger{
+  cursor: pointer;
+}

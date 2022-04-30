@@ -1,13 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import Record from 'src/app/models/Record';
-
-import { getNiceTime } from 'src/app/utils/utils';
 
 @Component({
-  selector: 'app-bar-records',
-  templateUrl: './bar-records.component.html',
-  styleUrls: ['./bar-records.component.css'],
+  selector: 'app-bar-details-record',
+  templateUrl: './bar-details-record.component.html',
+  styleUrls: ['./bar-details-record.component.css'],
   animations:[
     trigger('rotatedState', [
       state('default', style({ transform: 'rotate(270deg)' })),
@@ -22,27 +19,20 @@ import { getNiceTime } from 'src/app/utils/utils';
     ]),
   ]
 })
-export class BarRecordsComponent implements OnInit {
+export class BarDetailsRecordComponent implements OnInit {
   @Input() currentUser: string='';
-  @Input() records!:Array<Record>;
   @Output() returnRecord = new EventEmitter<void>();
-
   public stateRecord: string = 'default';
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  getNiceTime(time: Date): string {
-    return getNiceTime(time);
+  returnRecords(): void {
+    this.returnRecord.emit()
   }
 
   toggleRecord(): void {
     this.stateRecord = this.stateRecord === 'default' ? 'rotated' : 'default';
-  }
-
-  onWatchRecord(): void {
-    this.returnRecord.emit()
   }
 }

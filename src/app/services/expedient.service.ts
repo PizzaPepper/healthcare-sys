@@ -32,6 +32,15 @@ export class ExpedientService {
     );
   }
 
+  // ! @Warning: This method is only for simulation Scan finger, delete it when you have a real system
+  putStatusFromPatient(id: string) {
+    return this._http.put(
+      this.url + id + '/statusAccepted',
+      {},
+      { observe: 'response'}
+    );
+  }
+
   putStatusDefault(id: string) {
     return this._http.put(this.url + id + '/statusDefault', {});
   }

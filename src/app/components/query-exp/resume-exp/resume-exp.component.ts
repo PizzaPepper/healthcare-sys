@@ -58,26 +58,23 @@ export class ResumeExpComponent implements OnInit, OnDestroy {
       .subscribe();
 
     this.waiting = setInterval(() => {
-      this._expedientService
-        .getStatus(this.onSelectPerson!.expedient)
-        .subscribe({
-          next: (status: any) => {
-            console.log(status);
-            if (status == 'accepted') {
+    
+            if (this.stateAccess == 'accepted') {
               clearInterval(this.waiting);
 
-              this.onCloseWait();
-              this.goToExpedient();
+              this._expedientService.putStatus(this.onSelectPerson!.expedient).subscribe({
+                next: (res) => {
+                  const token: any = res.headers.get('X-Token');
+                  this._auth.addTokenExp(token);
+                  this.onCloseWait();
+                  this.goToExpedient();
+                }
+              });
             }
-          },
-          error: (err: any) => {
-            this.onCloseWait();
-          },
-        });
+          
     }, 5000);
   }
 
-  // ! @deprecated
   onCloseWait(): void {
     const popup: any = document.querySelector('.overlay');
     popup.style.visibility = 'hidden';
